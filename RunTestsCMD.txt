@@ -1,0 +1,27 @@
+Running test with Developer command prompt
+* Run dotnet commands in TestProject folder:
+
+* Run all tests *
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings
+
+* Loggers *
+- Log verbose information (verbosity=quiet,minimal,normal,detailed)
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "console;verbosity=detailed"
+
+- Log to a .trx file
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "trx"
+
+- Log to a .html file
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "html"
+
+* Run a specific test *
+//by name
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "console;verbosity=detailed" --filter "Name=FileNameDoesExist"
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "console;verbosity=detailed" --filter "(Name=FileNameDoesExist) | (Name=FileNameDoesNotExist)"
+
+//starts with
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "console;verbosity=detailed" --filter Name~FileName
+
+* Run tests based on attribute *
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "console;verbosity=detailed" --filter "Priority=1"
+dotnet test MyClassesTest.csproj --settings MyClasses.runsettings --logger "console;verbosity=detailed" --filter "TestCategory=NoException"
